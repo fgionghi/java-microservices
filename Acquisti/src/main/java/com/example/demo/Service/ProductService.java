@@ -1,29 +1,22 @@
 package com.example.demo.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpMethod;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.demo.domain.Product;
 
-@Service
-public class ProductService {
+//ottenere i metododi del microservizio product
+@FeignClient("catalogo")
+public interface ProductService {
 	
-	@Autowired
-	private RestTemplate restTemplate;
+	@GetMapping("/api/product/{productId}")
+	public Product getProduct(@PathVariable String productId);
 	
-	public Product getProducts(String productId) {
-		return restTemplate.getForObject("http://catalogo/api/product/{productId}", Product.class, productId);
-	}
-	
-	public Product bookAvailability (String productId, int quantity) {
-		return restTemplate.exchange("http://catalogo/api/product/{productId}/availability/{quantity}",
-				HttpMethod.PUT,
-				null, 
-				Product.class, 
-				productId, 
-				-quantity).getBody();
-	}
+	@PutMapping("/api/product/{productId}/availability/{quantity}")
+	public Product bookAvailability(
+			@PathVariable String productId,
+			@PathVariable int quantity);
+
 }
