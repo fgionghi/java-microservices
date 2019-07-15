@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import com.example.demo.domain.Product;
 
 //ottenere i metododi del microservizio product
+
+//identifichiamo il microservizio tramite un nome definiamo i metodi
 @FeignClient("catalogo")
 public interface ProductService {
 	
