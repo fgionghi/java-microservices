@@ -10,13 +10,13 @@ import com.example.demo.domain.Product;
 //ottenere i metododi del microservizio product
 
 //identifichiamo il microservizio tramite un nome definiamo i metodi
-@FeignClient("catalogo")
+@FeignClient(name="catalogo", fallback=ProductServiceFallback.class)
 public interface ProductService {
 	
 	@GetMapping("/api/product/{productId}")
 	public Product getProduct(@PathVariable String productId);
 	
-	@PutMapping("/api/product/{productId}/availability/{quantity}")
+	@PutMapping("/api/products/{productId}/availability/{quantity}")
 	public Product bookAvailability(
 			@PathVariable String productId,
 			@PathVariable int quantity);
