@@ -1,7 +1,11 @@
-FROM openjdk:11
+FROM maven as buildmvn
+COPY . /app
+WORKDIR /app
+RUN mvn clean install 
+
+FROM openjdk:alpine as run 
 
 WORKDIR /app
-ADD . /app 
+COPY --from buildmvn /app/target/Catalogo-0.0.1-SNAPSHOT.jar /app
 
-RUN ./mvnw package -Dmaven.test.skip=true 
-CMD ./mvnw spring-boot:run
+CMD java -jar Catalogo-0.0.1-SNAPSHOT.jar

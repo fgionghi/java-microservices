@@ -1,0 +1,113 @@
+[
+    {
+        "Id": "sha256:b9af9186f439fed74e349ad88f344033a5d9c01a9251135a839c649e03450007",
+        "RepoTags": [
+            "j0ng1/catalogo:latest",
+            "j0ngh1/catalogo:latest",
+            "catalogo:latest"
+        ],
+        "RepoDigests": [
+            "j0ng1/catalogo@sha256:aa9495d22767015b9fb91e041c2b1333a9c70121f933f99cde349dac9f231274"
+        ],
+        "Parent": "sha256:43fbdfb344401ad95594582de97b522de5d2e6106d7db9d907a38e290af2e5b1",
+        "Comment": "",
+        "Created": "2019-07-18T09:46:02.789449822Z",
+        "Container": "66b8dbcdb6a58cefdfaddb4540da1e2ae97325f0b0bb96c2bddd72d4520af4b7",
+        "ContainerConfig": {
+            "Hostname": "66b8dbcdb6a5",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/openjdk-11/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "JAVA_HOME=/usr/local/openjdk-11",
+                "JAVA_VERSION=11.0.4",
+                "JAVA_BASE_URL=https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.4%2B11/OpenJDK11U-jdk_",
+                "JAVA_URL_VERSION=11.0.4_11"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "#(nop) ",
+                "CMD [\"/bin/sh\" \"-c\" \"./mvnw spring-boot:run\"]"
+            ],
+            "ArgsEscaped": true,
+            "Image": "sha256:43fbdfb344401ad95594582de97b522de5d2e6106d7db9d907a38e290af2e5b1",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "DockerVersion": "18.09.7-ce",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/openjdk-11/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "JAVA_HOME=/usr/local/openjdk-11",
+                "JAVA_VERSION=11.0.4",
+                "JAVA_BASE_URL=https://github.com/AdoptOpenJDK/openjdk11-upstream-binaries/releases/download/jdk-11.0.4%2B11/OpenJDK11U-jdk_",
+                "JAVA_URL_VERSION=11.0.4_11"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "./mvnw spring-boot:run"
+            ],
+            "ArgsEscaped": true,
+            "Image": "sha256:43fbdfb344401ad95594582de97b522de5d2e6106d7db9d907a38e290af2e5b1",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 754103697,
+        "VirtualSize": 754103697,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/9fa4143551e4a6c84e8492b5cb4bdf502a16891e172a559bc7896ed3d78e1e25/diff:/var/lib/docker/overlay2/4d166fd7b6f31c5f2d2378e502dcc2963be5e2ba48f415bb3d0013fe42b4acc7/diff:/var/lib/docker/overlay2/e1b5e5ed7f57745874c1a4ff7803520bd435249d11ad8e7c3600414f36e48fc1/diff:/var/lib/docker/overlay2/906624f9565e20522426b51b548378d1c741e7636eecb670814df92989aedcad/diff:/var/lib/docker/overlay2/7c4465dbc50b7afa603e06e446c107896a36ceb5104c4de16cf975a761367b1d/diff:/var/lib/docker/overlay2/80bd346af9e14a8f32ff92b486806ef21e8386f6235022407c2c42338dff9210/diff:/var/lib/docker/overlay2/8fec07fb34a251a7c1500c90c683c14a2e7c022d3cc4a43200cf7baf9f719d2c/diff:/var/lib/docker/overlay2/c02bb70e6a9087c7e9ccff2fd729c92d704de5924c9670100557f3a5ad853ffd/diff:/var/lib/docker/overlay2/dd20ff2f051f6359e7a18fe998b11308f13fc1fc6e57b55df4fa88a670d9b44d/diff",
+                "MergedDir": "/var/lib/docker/overlay2/7c55c601c71cbdf75110611adcc198c8f8d336150b2d27cf2be495518debb7d3/merged",
+                "UpperDir": "/var/lib/docker/overlay2/7c55c601c71cbdf75110611adcc198c8f8d336150b2d27cf2be495518debb7d3/diff",
+                "WorkDir": "/var/lib/docker/overlay2/7c55c601c71cbdf75110611adcc198c8f8d336150b2d27cf2be495518debb7d3/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:e2a8a00a83b20c88b81952f81e6cfc2e2dd5aa7f00a23b067e6342c70602a567",
+                "sha256:15210a41d4ee66fef9f6917804a00d44f72517c8ed8feee1c97e08a35be52ad6",
+                "sha256:392f356944ff70fa41f6dbf6e6d207beef060f0869e584edb58ca8cd343b341f",
+                "sha256:a4e797bc3f155d8be8dcd6bb565fb41e07cc4febdba63efdf7a8dcb6ac10444e",
+                "sha256:c6465287316203e0732c16b7a1834a28e1fd5a3916789f18f72dba74aea151cd",
+                "sha256:03118097f4cab6c861d6477cc432070eef31f91294fa46f769abe07792e6f16a",
+                "sha256:f7b9d27578aff03d883296f5c3f3a55c59756248cb8ad43d85b99f15eaf5cbb0",
+                "sha256:9efa2c6813301e92cb1548462dfce11184b5aa663176faf5e068b6b91e4b3212",
+                "sha256:15fa9e0987b73e9e9a58d517c2334e96d3ede25190b462ea95915fecc958bfd6",
+                "sha256:975f2f605727fed3f124f1aa775fdc9c54f769a3917193a0e19f7bf78301513a"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2019-07-18T13:18:48.195609455+02:00"
+        }
+    }
+]

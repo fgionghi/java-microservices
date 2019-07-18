@@ -1,0 +1,103 @@
+[
+    {
+        "Id": "sha256:f630bcc08fb5b69fa2a5e4820e9f879afdde5de452c37f97da3af17467e2e27f",
+        "RepoTags": [
+            "catalogo:alpine"
+        ],
+        "RepoDigests": [],
+        "Parent": "sha256:f23c8222d38dc539109f79512dbb653db59183e168a63552c3667002284bb272",
+        "Comment": "",
+        "Created": "2019-07-18T11:28:26.84482373Z",
+        "Container": "4c7c54c62ec26166643a55ef40e601a985c0dd1b64f461f1546110ec33e0d40a",
+        "ContainerConfig": {
+            "Hostname": "4c7c54c62ec2",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin",
+                "LANG=C.UTF-8",
+                "JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk",
+                "JAVA_VERSION=8u171",
+                "JAVA_ALPINE_VERSION=8.171.11-r0"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "#(nop) ",
+                "CMD [\"/bin/sh\" \"-c\" \"./mvnw spring-boot:run\"]"
+            ],
+            "ArgsEscaped": true,
+            "Image": "sha256:f23c8222d38dc539109f79512dbb653db59183e168a63552c3667002284bb272",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": null,
+            "OnBuild": [],
+            "Labels": {}
+        },
+        "DockerVersion": "18.09.7-ce",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin",
+                "LANG=C.UTF-8",
+                "JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk",
+                "JAVA_VERSION=8u171",
+                "JAVA_ALPINE_VERSION=8.171.11-r0"
+            ],
+            "Cmd": [
+                "/bin/sh",
+                "-c",
+                "./mvnw spring-boot:run"
+            ],
+            "ArgsEscaped": true,
+            "Image": "sha256:f23c8222d38dc539109f79512dbb653db59183e168a63552c3667002284bb272",
+            "Volumes": null,
+            "WorkingDir": "/app",
+            "Entrypoint": null,
+            "OnBuild": [],
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 251604146,
+        "VirtualSize": 251604146,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/01eda285df9f2596e0a4d72df418a3ba4804fdc37c572e05ed99ce77dce69461/diff:/var/lib/docker/overlay2/e4822fc81811d79ef1aaae39689d344e3d909bd529bd56b0dcc68b584e9bac2f/diff:/var/lib/docker/overlay2/c1472ab0ddb35188c892657585b3bd0b0dc8d0cfdde2bbb5c75aaeaed2e98ff4/diff:/var/lib/docker/overlay2/dfd2b05188c8b79d92b49145f6a0bc482ae7c5d2c39e68285c5d6c0a8d892c94/diff:/var/lib/docker/overlay2/6cd517f300bfb722975a0468dfe70527c729ee69efbf081bb1709e6ac0aff34c/diff",
+                "MergedDir": "/var/lib/docker/overlay2/bbde415c906477c7bdd071f65c7ef643ae6271555c64888e8cbae6585c411206/merged",
+                "UpperDir": "/var/lib/docker/overlay2/bbde415c906477c7bdd071f65c7ef643ae6271555c64888e8cbae6585c411206/diff",
+                "WorkDir": "/var/lib/docker/overlay2/bbde415c906477c7bdd071f65c7ef643ae6271555c64888e8cbae6585c411206/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:73046094a9b835e443af1a9d736fcfc11a994107500e474d0abf399499ed280c",
+                "sha256:298c3bb2664fb7f8514ecdde8b76c0ca95c7c7b82eaa326a7e9661e017488164",
+                "sha256:93351e248e6ec58df222fb8b12690ba552273ff307712e78251d3635e3aefedd",
+                "sha256:ab6cc7cfe9c50bf5b1fe18dba0c00120a6cee92dd01383b14a05d49bf2d44172",
+                "sha256:a270fffa8e3488f33791482e4b5da3d5d8dfb5d514b8a976d98d93d2d906580e",
+                "sha256:094838c289b21caaf74145645d20ed2c13ec9032d8f4010d6f4039ed53d7d9f7"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2019-07-18T13:28:27.075106267+02:00"
+        }
+    }
+]
