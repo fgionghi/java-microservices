@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
 import com.example.demo.data.ProductRepository;
 import com.example.demo.domain.Product;
@@ -39,4 +40,5 @@ public class CatalogoControllerTests {
 		product.setDescription("Test description");
 		product.setPrice(100.0);
 
+}
 }
