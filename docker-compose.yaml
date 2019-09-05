@@ -1,0 +1,145 @@
+version: "3.7"
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+    networks:
+      - afnet
+  registry:
+    image: smartcommunitylab/af-registry
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+    ports:
+      - 8761:8761
+    environment:
+      - EUREKA_PREFERRED_NETWORK=10.0
+      - EVICTION_INTERVAL=50000
+    networks:
+      afnet:
+        aliases:
+        - prometheus-eureka-server
+  gateway:
+    image: smartcommunitylab/zuul-proxy:latest
+    ports:
+      - 5000:5000
+    environment:
+      - ZIPKIN_URL=http://zipkin:9411
+      - EUREKA_URL=http://registry:8761/eureka
+      - EUREKA_PREFERRED_NETWORK=10.0
+    depends_on:
+      - registry
+      - zipkin
+    deploy:
+      placement:
+         constraints: [node.role == manager]
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+    networks:
+      - afnet
+  mongo:
+    image: mongo
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      afnet:
+        aliases:
+         - mongo
+    deploy:
+      placement:
+         constraints: [node.role == manager]
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+  purchase:
+    image: smartcommunitylab/af-purchase
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+    ports:
+      - 28080:8080
+    environment:
+      - ZIPKIN_URL=http://zipkin:9411
+      - EUREKA_URL=http://registry:8761/eureka
+      - MONGO_URL=mongo
+      - EUREKA_PREFERRED_NETWORK=10.0
+    depends_on:
+      - mongo
+    networks:
+      - afnet
+  catalog:
+    image: smartcommunitylab/af-catalog
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+    environment:
+      - ZIPKIN_URL=http://zipkin:9411
+      - EUREKA_URL=http://registry:8761/eureka
+      - MONGO_URL=mongo
+      - EUREKA_PREFERRED_NETWORK=10.0
+    ports:
+      - 18080:8080
+    depends_on:
+      - mongo
+    networks:
+      - afnet
+  visualizer:
+    image: bretfisher/visualizer:latest
+    ports:
+      - "38080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+         constraints: [node.role == manager]
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 128M
+    networks:
+      - afnet
+networks:
+  afnet:
+    driver: overlay
+volumes:
+  mongo-data:

@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acquisti
+spec:
+  selector:
+    matchLabels:
+      app: af
+      tier: acquisti
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: af
+        tier: acquisti
+    spec:
+      containers:
+      - name: acquisti
+        image: smartcommunitylab/af-purchase
+        # resources:
+        #   limits:
+        #     cpu: "0.3"
+        #     memory: "256Mi"
+        #   requests:
+        #     cpu: "0.1"
+        #     memory: "128Mi"
+        imagePullPolicy: "Always"
+        ports:
+          - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 25
+          periodSeconds: 5
+          successThreshold: 2
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        envFrom:
+        - configMapRef:
+            name: acquisti

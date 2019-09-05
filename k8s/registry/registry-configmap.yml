@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: registry
+data:
+  EVICTION_INTERVAL: "50000"
+  #EUREKA_PREFERRED_NETWORK: "10.244"

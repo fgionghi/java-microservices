@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin
+spec:
+  selector:
+    matchLabels:
+      app: af
+      tier: zipkin
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: af
+        tier: zipkin
+    spec:
+      containers:
+      - name: zipkin
+        image: openzipkin/zipkin
+        # resources:
+        #   limits:
+        #     cpu: "300m"
+        #     memory: "256Mi"
+        #   requests:
+        #     cpu: "100m"
+        #     memory: "128Mi"
+        imagePullPolicy: "Always"
+        ports:
+          - containerPort: 9411
+        readinessProbe:
+          httpGet:
+            path: /zipkin
+            port: 9411
+          initialDelaySeconds: 25
+          periodSeconds: 5
+          successThreshold: 2
+        livenessProbe:
+          httpGet:
+            path: /zipkin
+            port: 9411
+          initialDelaySeconds: 15
+          periodSeconds: 20

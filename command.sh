@@ -16,3 +16,5 @@ docker run --network altaformazione --memory 256m --name zuul-proxy -p 5000:5000
 
 
 declare -i i;i=0; while true; do i+=1; echo $i; curl -X GET -H "Content-Type: application/json" 'http://catalogo.local/api/products'; echo ""; sleep 2; done;
+
+#We still have to build the images with single Dockerfile, but can substitute above commands with docker-compose. 
