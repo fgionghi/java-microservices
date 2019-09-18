@@ -1,12 +1,12 @@
 package com.example.demo.filters;
 
-import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
-
+import com.example.demo.throttling.Throttling;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
+import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
 
 @Component
 //filtri per proteggere le api analizzando l'header della richiesta
@@ -18,17 +18,26 @@ public class SamplepreFilter  extends ZuulFilter {
 		RequestContext ctx = RequestContext.getCurrentContext();
 		String serviceId = (String) ctx.get(FilterConstants.SERVICE_ID_KEY);
 		
-		return "acquisti".equals(serviceId);
+		return true;
 	}
 
 	@Override
 	public Object run() throws ZuulException {
 		// TODO Auto-generated method stub
 		RequestContext ctx = RequestContext.getCurrentContext();
-		if (ctx.getRequest().getHeader("Authorization") == null) {
+
+		System.err.println("Throttling start");
+
+		Throttling t = new Throttling();
+		if(!t.allowed(ctx)){
 			ctx.setSendZuulResponse(false);
 			ctx.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
 		}
+
+		/*if (ctx.getRequest().getHeader("Authorization") == null) {
+			ctx.setSendZuulResponse(false);
+			ctx.setResponseStatusCode(HttpStatus.UNAUTHORIZED.value());
+		}*/
 		return null;
 	}
 

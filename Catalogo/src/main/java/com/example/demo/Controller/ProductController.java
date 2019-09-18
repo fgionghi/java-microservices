@@ -1,5 +1,9 @@
 package com.example.demo.Controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,11 +19,17 @@ import com.example.demo.domain.Product;
 import com.example.demo.service.ProductService;
 
 @RestController
+@Api(tags = "Catalog",description = "Product Catalog API")
 public class ProductController {
 	
 	@Autowired
 	private ProductService service;
-	
+
+	@ApiOperation(value = "Lista Prodotti", notes = "Lista prodotti disponibili con impaginazione")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Successfully retrieved list"),
+			@ApiResponse(code = 500, message = "Brutto errore server")
+	})
 	@GetMapping("/api/products")
 	public @ResponseBody Page<Product> listProducts(Pageable pageRequest) {
 		return service.getProducts(pageRequest);
