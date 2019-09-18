@@ -11,6 +11,7 @@ public class Acquisti {
 	private Integer quantity;
 	private Double price;
 	private String userId;
+	
 	public String getId() {
 		return id;
 	}

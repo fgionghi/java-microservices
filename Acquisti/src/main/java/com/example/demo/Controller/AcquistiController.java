@@ -26,7 +26,7 @@ public class AcquistiController {
 	}
 	
 	@GetMapping("/api/acquisto/{purchaseId}")
-	public @ResponseBody Acquisti getAcquist(@PathVariable String acquistiId) {
+	public @ResponseBody Acquisti getAcquisti(@PathVariable String acquistiId) {
 		return service.getUserPurchase(acquistiId);
 	}
 	
