@@ -18,9 +18,12 @@ public class Throttling {
     @Autowired
     private MongoRepository<User,String> repo;
 
-    private boolean allowed;
+    public Throttling(MongoRepository<User, String> repo) {
+        this.repo = repo;
+    }
 
     public boolean allowed(RequestContext context) {
+        boolean allowed;
         String token = context.getRequest().getHeader("api-token");
         if (token == null) return false;
         System.err.println("Throttling token " + token);
