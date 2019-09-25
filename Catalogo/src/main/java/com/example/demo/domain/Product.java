@@ -2,8 +2,11 @@ package com.example.demo.domain;
 
 import org.springframework.data.annotation.Id;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class Product {
 	@Id
+	@ApiModelProperty()
 	private String id;
 	private String title, category, description;
 	private Integer availability;

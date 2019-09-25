@@ -14,12 +14,20 @@ import com.example.demo.Service.AcquistiService;
 import com.example.demo.domain.Acquisti;
 import com.example.demo.domain.AcquistiRequest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @Controller
+
+
+//per swagger
+@Api(tags="Acquisti", description="Product Catalog API")
 public class AcquistiController {
 	
 	@Autowired
 	private AcquistiService service;
 	
+	@ApiOperation(value="Acquisti by user", notes="Acquisti per utente")
 	@GetMapping("/api/acquisti/{userId}")
 	public @ResponseBody Page<Acquisti> listAcquisti(@PathVariable String userId, Pageable pageRequest) {
 		return service.getUserPurchases(userId, pageRequest);
