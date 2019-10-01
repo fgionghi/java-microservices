@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\alber\Desktop\java-microservices-schelfi\kompose.exe convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: zipkin
+  name: zipkin
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: zipkin
+    spec:
+      containers:
+      - image: openzipkin/zipkin
+        name: zipkin
+        ports:
+        - containerPort: 9411
+        resources:
+          limits:
+            cpu: 300m
+            memory: "268435456"
+          requests:
+            cpu: 100m
+            memory: "134217728"
+      restartPolicy: Always
+status: {}

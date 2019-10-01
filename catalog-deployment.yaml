@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\alber\Desktop\java-microservices-schelfi\kompose.exe convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: catalog
+  name: catalog
+spec:
+  replicas: 2
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: catalog
+    spec:
+      containers:
+      - env:
+        - name: EUREKA_PREFERRED_NETWORK
+          value: "10.0"
+        - name: EUREKA_URL
+          value: http://registry:8761/eureka
+        - name: MONGO_URL
+          value: mongo
+        - name: ZIPKIN_URL
+          value: http://zipkin:9411
+        image: smartcommunitylab/af-catalog
+        name: catalog
+        ports:
+        - containerPort: 8080
+        resources:
+          limits:
+            cpu: 300m
+            memory: "268435456"
+          requests:
+            cpu: 100m
+            memory: "134217728"
+      restartPolicy: Always
+status: {}

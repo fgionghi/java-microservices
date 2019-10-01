@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\alber\Desktop\java-microservices-schelfi\kompose.exe convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: registry
+  name: registry
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: registry
+    spec:
+      containers:
+      - env:
+        - name: EUREKA_PREFERRED_NETWORK
+          value: "10.0"
+        - name: EVICTION_INTERVAL
+          value: "50000"
+        image: smartcommunitylab/af-registry
+        name: registry
+        ports:
+        - containerPort: 8761
+        resources:
+          limits:
+            cpu: 300m
+            memory: "268435456"
+          requests:
+            cpu: 100m
+            memory: "134217728"
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\alber\Desktop\java-microservices-schelfi\kompose.exe convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mongo
+  name: mongo
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mongo
+    spec:
+      containers:
+      - image: mongo
+        name: mongo
+        resources:
+          limits:
+            cpu: 300m
+            memory: "268435456"
+          requests:
+            cpu: 100m
+            memory: "134217728"
+        volumeMounts:
+        - mountPath: /data/db
+          name: mongo-data
+      restartPolicy: Always
+      volumes:
+      - name: mongo-data
+        persistentVolumeClaim:
+          claimName: mongo-data
+status: {}
