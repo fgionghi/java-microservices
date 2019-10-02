@@ -5,6 +5,7 @@ import json
 import requests
 import time
 import uuid
+import base64
 
 def get(url:str):
     return s.get(url).status_code
@@ -14,11 +15,14 @@ def post(url:str, body:any):
     return s.post(url, data=json.dumps(body)).status_code
 
 
-myId = uuid.uuid4()
-s = requests.Session()
-s.headers.update({'api-token':str(myId)})
+toEncode = {'token': str(uuid.uuid4()), 'max-call':10 }
+encoded = base64.b64encode(bytes(json.dumps(toEncode),'utf-8'))
 
-print("ID corrente: " + str(myId))
+
+s = requests.Session()
+s.headers.update({'api-token':str(encoded,'utf-8')})
+
+print("ID corrente: " + str(encoded))
 
 url = str(input("\nInserisci l'indirizzo a cui effettuare la richiesta: "))
 nReq = int(input("Inserisci la quantità di richieste da effettuare: "))

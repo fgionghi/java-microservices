@@ -35,5 +35,15 @@ public class User {
 
     private int nCall;
 
+    public int getMaxCall() {
+        return maxCall;
+    }
+
+    public void setMaxCall(int maxCall) {
+        this.maxCall = maxCall;
+    }
+
+    private int maxCall;
+
 
 }
