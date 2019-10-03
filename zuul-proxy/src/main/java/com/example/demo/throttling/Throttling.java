@@ -2,6 +2,7 @@ package com.example.demo.throttling;
 
 import com.example.demo.data.User;
 import com.netflix.zuul.context.RequestContext;
+import org.apache.commons.codec.binary.Base64;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import org.apache.commons.codec.binary.Base64;
 
 @Service
 public class Throttling {
@@ -38,13 +38,19 @@ public class Throttling {
         System.err.println("Throttling token " + token);
         if(repo.existsById(token)){
             User tmp = repo.findById(token).get();
+            maxCall = tmp.getMaxCall();
             LocalDateTime now = LocalDateTime.now();
             int dur = (int) Duration.between(now,tmp.getFirstCall()).toMinutes();
-            allowed = (dur < 60) && (tmp.getnCall() < maxCall);
+            boolean reset = (dur > 60);
+            allowed = ((dur < 60) || reset) && ((tmp.getnCall() < maxCall) || reset);
             System.err.println("AUTORIZZATO: "+allowed);
 
             if(allowed)
             {
+                if(reset){
+                    tmp.setFirstCall(now);
+                    tmp.setnCall(0);
+                }
                 tmp.setnCall(tmp.getnCall()+1);
                 repo.save(tmp);
                 return true;
